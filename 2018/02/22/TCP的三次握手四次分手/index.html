@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://www.learning9527.cn/2018/02/22/TCP的三次握手四次分手/index.html">
 <meta property="og:site_name" content="王保华的个人博客">
 <meta property="og:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-623965.jpg">
-<meta property="og:updated_time" content="2018-02-22T09:00:02.466Z">
+<meta property="og:updated_time" content="2018-02-26T03:27:24.341Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TCP的三次握手四次挥手">
 <meta name="twitter:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-623965.jpg">
@@ -174,9 +174,9 @@
 <blockquote>
 <p>第一次请求客户端发送一个SYN包，序列号是0。<br>第二次请求服务器会发送一个SYN和一个ACK包，序列号是0，ack号是1。<br>第三次本地客户端请求会发送一个ACK包，序列号是1，ack号是1来回复服务器。</p>
 </blockquote>
-<h2 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h2><h3 id="第一次挥手"><a href="#第一次挥手" class="headerlink" title="第一次挥手"></a>第一次挥手</h3><p>客户端给服务器发送FIN(M)包，client进入FIN-WAIT-1状态，客户端没有数据发送。</p>
+<h2 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h2><h3 id="第一次挥手"><a href="#第一次挥手" class="headerlink" title="第一次挥手"></a>第一次挥手</h3><p>客户端给服务器发送FIN(M)包，client进入FIN-WAIT-1状态，客户端再没有其他数据发送。</p>
 <h3 id="第二次挥手"><a href="#第二次挥手" class="headerlink" title="第二次挥手"></a>第二次挥手</h3><p>server收到client发来的M包之后，向client发送ACK(M+1)包，server进入CLOSE-WAIT状态，client进入FIN-WAIT-2状态。</p>
-<h3 id="第三次挥手"><a href="#第三次挥手" class="headerlink" title="第三次挥手"></a>第三次挥手</h3><p>server向client发送FIN(N)包，请求关闭链接，server进入LAST-ACK状态。</p>
+<h3 id="第三次挥手"><a href="#第三次挥手" class="headerlink" title="第三次挥手"></a>第三次挥手</h3><p>server继续向client发送FIN(N)包，请求关闭链接，server进入LAST-ACK状态。</p>
 <h3 id="第四次挥手"><a href="#第四次挥手" class="headerlink" title="第四次挥手"></a>第四次挥手</h3><p>client收到server发送的FIN(N)包，进入TIME-WAIT状态，向server发送ACK(N+1)包，server收到client的ACK(N+1)包以后，进入CLOSE状态，client等待一段时间之后没有收到回复，判断server关闭，进入CLOSE状态。</p>
 <blockquote>
 <p>四次挥手，即四次发包过程<br>客户端挥手–&gt;服务器挥手–&gt;服务器挥手–&gt;客户端挥手</p>
@@ -472,15 +472,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JS笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">TCP 三次握手/四次挥手</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">GitHub</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JS笔记</a>
               </li>
             
             <div class="clearfix"></div>

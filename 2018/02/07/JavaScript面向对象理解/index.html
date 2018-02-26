@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.learning9527.cn">
-  <title>JavaScript面向对象理解 | 王保华的个人博客</title>
+  <title>JavaScript面向对象 | 王保华的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="keywords" content="JS笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript面向对象理解">
+<meta property="og:title" content="JavaScript面向对象">
 <meta property="og:url" content="http://www.learning9527.cn/2018/02/07/JavaScript面向对象理解/index.html">
 <meta property="og:site_name" content="王保华的个人博客">
 <meta property="og:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-625270.jpg">
-<meta property="og:updated_time" content="2018-02-11T07:17:11.129Z">
+<meta property="og:updated_time" content="2018-02-26T06:56:18.611Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript面向对象理解">
+<meta name="twitter:title" content="JavaScript面向对象">
 <meta name="twitter:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-625270.jpg">
   
     <link rel="alternative" href="/atom.xml" title="王保华的个人博客" type="application/atom+xml">
@@ -152,7 +152,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      JavaScript面向对象理解
+      JavaScript面向对象
     </h1>
   
 
@@ -175,6 +175,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var createPerson = <span class="keyword">function</span>(name, age) &#123;</span><br><span class="line">    var o = new Object();</span><br><span class="line">    o.name = name;</span><br><span class="line">    o.age = age;</span><br><span class="line">    o.getName = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> this.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> o;</span><br><span class="line">&#125;</span><br><span class="line">var perTom = createPerson(<span class="string">'TOM'</span>, 20);</span><br><span class="line">var PerJake = createPerson(<span class="string">'Jake'</span>, 22);</span><br></pre></td></tr></table></figure>
 <p>使用构造函数解决判断对象与实例关系的问题：<br>    var p1=New (person,’tom’,20);  等效于  var p1=new Person(‘tom’,20);<br>每一个函数都有一个prototype属性，该属性指向一个对象，该对象就是原型。<br>    构造函数的prototype以及_proto_属性和实例对象的_proto_属性都指向原型对象，而原型对象的constructor属性指向构造函数<br>    构造函数内部属性和方法–&gt;私有方法<br>    原型对象内部属性和方法–&gt;共有方法<br>    访问实例对象的属性和方法，优先访问实例对象内部的属性和方法。<br>原型链：实例对象A是构造函数B的实例，同时这个构造函数B是构造函数C的实例，构造函数B同时也是实例对象B的<em>proto</em>属性指向原型对象A，而原型的constructor属性指向构造函数C。<br>    <a href="img/_proto_.png">示图如下</a><br>继承：<br>    构造函数的继承：通过call和apply实现继承<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Person(name, age) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.age = age;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.getName = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> this.name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> cPerson(name, age, job) &#123;</span><br><span class="line">    Person.call(this, name, age);</span><br><span class="line">    this.job = job;</span><br><span class="line">&#125; </span><br><span class="line">// 继承原型</span><br><span class="line">cPerson.prototype = new Person(name, age);</span><br><span class="line">// 添加更多方法</span><br><span class="line">cPerson.prototype.getLive = <span class="function"><span class="title">function</span></span>() &#123;&#125;</span><br></pre></td></tr></table></figure></p>
 <p>使用ES5的create函数：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Person(name, age) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.age = age;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.getName = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> this.name</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.getAge = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> this.age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> Student(name, age, grade) &#123;</span><br><span class="line">    // 构造函数继承</span><br><span class="line">    Person.call(this, name, age);</span><br><span class="line">    this.grade = grade;</span><br><span class="line">&#125;</span><br><span class="line">// 原型继承</span><br><span class="line">Student.prototype = Object.create(Person.prototype, &#123;</span><br><span class="line">    // 不要忘了重新指定构造函数</span><br><span class="line">    constructor: &#123;</span><br><span class="line">        value: Student</span><br><span class="line">    &#125;</span><br><span class="line">    getGrade: &#123;</span><br><span class="line">        value: <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">            <span class="built_in">return</span> this.grade</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">var s1 = new Student(<span class="string">'ming'</span>, 22, 5);</span><br><span class="line">console.log(s1.getName());  // ming</span><br><span class="line">console.log(s1.getAge());   // 22</span><br><span class="line">console.log(s1.getGrade()); // 5</span><br></pre></td></tr></table></figure></p>
+<p>如有错误，烦请指正，谢谢！</p>
 
       
 
@@ -465,15 +466,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JS笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">TCP 三次握手/四次挥手</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">GitHub</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JS笔记</a>
               </li>
             
             <div class="clearfix"></div>
