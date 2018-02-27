@@ -6,18 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.learning9527.cn">
-  <title>处理GitHub问题 | 王保华的个人博客</title>
+  <title>JavaScript作用域链与闭包 | 王保华的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="GitHub">
+  <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="处理GitHub问题">
-<meta property="og:url" content="http://www.learning9527.cn/2018/01/22/dealGitHub/index.html">
+<meta property="og:title" content="JavaScript作用域链与闭包">
+<meta property="og:url" content="http://www.learning9527.cn/2018/02/27/JavaScript作用域链与闭包/index.html">
 <meta property="og:site_name" content="王保华的个人博客">
-<meta property="og:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-620594.jpg">
-<meta property="og:updated_time" content="2018-02-26T06:56:30.116Z">
+<meta property="og:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-624158.png">
+<meta property="og:updated_time" content="2018-02-27T03:00:09.671Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="处理GitHub问题">
-<meta name="twitter:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-620594.jpg">
+<meta name="twitter:title" content="JavaScript作用域链与闭包">
+<meta name="twitter:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-624158.png">
   
     <link rel="alternative" href="/atom.xml" title="王保华的个人博客" type="application/atom+xml">
   
@@ -145,37 +145,61 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-dealGitHub" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-JavaScript作用域链与闭包" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      处理GitHub问题
+      JavaScript作用域链与闭包
     </h1>
   
 
         
-        <a href="/2018/01/22/dealGitHub/" class="archive-article-date">
-  	<time datetime="2018-01-22T09:07:57.257Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-22</time>
+        <a href="/2018/02/27/JavaScript作用域链与闭包/" class="archive-article-date">
+  	<time datetime="2018-02-27T00:55:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-620594.jpg" alt=""></p>
+        <p><img src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-624158.png" alt=""></p>
 <a id="more"></a>
-<p>GitHub配置域名domain，解决只能显示GitHub.learning9527.io，而不能显示为www.learning9527.cn<br>使用hexo提交GitHub时，hexo clean –&gt; hexo generate –&gt; hexo deploy，发生报错</p>
-<pre><code>error: failed to execute prompt script (exit code 1)
-fatal: could not read Username for &apos;https://github.com&apos;: No error
-FATAL Something&apos;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html
-Error: bash: /dev/tty: No such device or address
-error: failed to execute prompt script (exit code 1)
-fatal: could not read Username for &apos;https://github.com&apos;: No error
-</code></pre><h3 id="两种解决方案如下"><a href="#两种解决方案如下" class="headerlink" title="两种解决方案如下"></a>两种解决方案如下</h3><p>修改配置文件_config.yml中的：<br>Ⅰ.将repository: <a href="http://github.com/learning9527/learning9527.github.io.git" target="_blank" rel="noopener">http://github.com/learning9527/learning9527.github.io.git</a> 改为 repository: git@github.com:learning9527/learning9527.github.io.git<br>Ⅱ.将repository: <a href="http://github.com/learning9527/learning9527.github.io.git" target="_blank" rel="noopener">http://github.com/learning9527/learning9527.github.io.git</a> 改为 repository: ssh://git@github.com/learning9527/learning9527.github.io</p>
-<p>如有错误，烦请指正，谢谢！</p>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><ul>
+<li><p>管理引擎如何在当前作用域及其子作用域中根据标识符名称进行变量查找</p>
+<blockquote>
+<p>标识符即变量名，函数名</p>
+</blockquote>
+</li>
+<li><p>JavaScript中只有全局作用域和函数作用域</p>
+<blockquote>
+<p>JavaScript代码执行过程两个阶段，代码编译和代码执行。<br>编译阶段：编译器执行，将代码翻译成可执行代码，确定作用域<br>执行阶段：由引擎完成，执行可执行代码，执行上下文此阶段创建(执行上下文创建，代码执行，垃圾回收)</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h2><p>由当前环境和上层环境的一系列变量对象组成，保证当前执行环境对符合访问权限的变量和函数的有序访问。</p>
+<blockquote>
+<p>执行上下文执行阶段，活动对象单向通道访问。</p>
+</blockquote>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p><strong>闭包是一种特殊的对象</strong></p>
+<ol>
+<li>由执行上下文 A 和执行上下文中创建的函数 B 组成</li>
+<li>B <strong>执行</strong>时访问了 A 变量对象中的值，产生闭包(B 函数必须被执行)</li>
+<li>多数以函数 B 名称代指闭包，chrome中以执行上下文 A 的函数代指闭包。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var fn = null;</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>() &#123;</span><br><span class="line">    var a = 2;</span><br><span class="line">    <span class="keyword">function</span> <span class="function"><span class="title">innnerFoo</span></span>() &#123;</span><br><span class="line">        console.log(a);</span><br><span class="line">    &#125;</span><br><span class="line">    fn = innnerFoo; // 将 innnerFoo的引用，赋值给全局变量中的fn</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">bar</span></span>() &#123;</span><br><span class="line">    fn(); // 此处的保留的innerFoo的引用</span><br><span class="line">&#125;</span><br><span class="line">foo();</span><br><span class="line">bar(); // 2</span><br></pre></td></tr></table></figure>
+<p>fn函数在bar()内部执行时，可以访问通过赋值保留的innerFoo引用，可以访问foo的被保留变量对象。<br><strong>通过闭包，可以在其他的执行上下文中，访问到函数的内部变量</strong></p>
+<blockquote>
+<p>如下例，尽管闭包被保存在全局变量中，闭包的作用域链不会发生改变。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var fn = null;</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>() &#123;</span><br><span class="line">    var a = 2;</span><br><span class="line">    <span class="keyword">function</span> <span class="function"><span class="title">innnerFoo</span></span>() &#123;</span><br><span class="line">        console.log(c); // 在这里，试图访问函数bar中的c变量，会抛出错误</span><br><span class="line">        console.log(a);</span><br><span class="line">    &#125;</span><br><span class="line">    fn = innnerFoo; // 将 innnerFoo的引用，赋值给全局变量中的fn</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">bar</span></span>() &#123;</span><br><span class="line">    var c = 100;</span><br><span class="line">    fn(); // 此处的保留的innerFoo的引用</span><br><span class="line">&#125;</span><br><span class="line">foo();</span><br><span class="line">bar();</span><br></pre></td></tr></table></figure>
+<h3 id="闭包应用场景"><a href="#闭包应用场景" class="headerlink" title="闭包应用场景"></a>闭包应用场景</h3><h4 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a><a href="">柯里化</a></h4><h4 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h4><ul>
+<li>利用函数自执行创建一个模块，add为模块向外暴露的方法，a,b为私有变量。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    var a = 10;</span><br><span class="line">    var b = 20;</span><br><span class="line">    <span class="keyword">function</span> add(num1, num2) &#123;</span><br><span class="line">        var num1 = !!num1 ? num1 : a;</span><br><span class="line">        var num2 = !!num2 ? num2 : b;</span><br><span class="line">        <span class="built_in">return</span> num1 + num2;</span><br><span class="line">    &#125;</span><br><span class="line">    window.add = add;</span><br><span class="line">&#125;)();</span><br><span class="line">add(10, 20);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>参考文章：<br><a href="https://yangbo5207.github.io/wutongluo/ji-chu-jin-jie-xi-lie/si-3001-zuo-yong-yu-lian-yu-bi-bao.html" target="_blank" rel="noopener">作用域链与闭包–这波能反杀</a><br>如有错误，烦请指正，谢谢！</p>
 
       
 
@@ -220,7 +244,7 @@ fatal: could not read Username for &apos;https://github.com&apos;: No error
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">GitHub</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
         		</li>
       		
 		</ul>
@@ -276,7 +300,7 @@ fatal: could not read Username for &apos;https://github.com&apos;: No error
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.learning9527.cn/2018/01/22/dealGitHub/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.learning9527.cn/2018/02/27/JavaScript作用域链与闭包/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -290,18 +314,9 @@ fatal: could not read Username for &apos;https://github.com&apos;: No error
   
 <nav id="article-nav">
   
-    <a href="/2018/01/30/Markdown语法/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Markdown语法
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/01/22/first/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Test</div>
+    <a href="/2018/02/26/JavaScript变量对象/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaScript变量对象</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -331,7 +346,7 @@ fatal: could not read Username for &apos;https://github.com&apos;: No error
   
 
   
-  <div id="SOHUCS" sid="dealGitHub" ></div> 
+  <div id="SOHUCS" sid="JavaScript作用域链与闭包" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
