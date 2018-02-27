@@ -6,18 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.learning9527.cn">
-  <title>JavaScript变量对象 | 王保华的个人博客</title>
+  <title>setTimeout与闭包 | 王保华的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="JavaScript">
+  <meta name="keywords" content="面试,闭包">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript变量对象">
-<meta property="og:url" content="http://www.learning9527.cn/2018/02/26/JavaScript变量对象/index.html">
+<meta property="og:title" content="setTimeout与闭包">
+<meta property="og:url" content="http://www.learning9527.cn/2018/02/27/setTimeout与闭包/index.html">
 <meta property="og:site_name" content="王保华的个人博客">
-<meta property="og:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-628439.jpg">
-<meta property="og:updated_time" content="2018-02-26T08:36:11.583Z">
+<meta property="og:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-627032.jpg">
+<meta property="og:updated_time" content="2018-02-27T07:11:32.921Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript变量对象">
-<meta name="twitter:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-628439.jpg">
+<meta name="twitter:title" content="setTimeout与闭包">
+<meta name="twitter:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-627032.jpg">
   
     <link rel="alternative" href="/atom.xml" title="王保华的个人博客" type="application/atom+xml">
   
@@ -145,49 +145,58 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-JavaScript变量对象" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-setTimeout与闭包" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      JavaScript变量对象
+      setTimeout与闭包
     </h1>
   
 
         
-        <a href="/2018/02/26/JavaScript变量对象/" class="archive-article-date">
-  	<time datetime="2018-02-26T07:41:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-26</time>
+        <a href="/2018/02/27/setTimeout与闭包/" class="archive-article-date">
+  	<time datetime="2018-02-27T03:24:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-628439.jpg" alt=""></p>
+        <p><img src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-627032.jpg" alt=""></p>
 <a id="more"></a>
-<p>执行上下文的生命周期分为两个阶段：</p>
-<ol>
-<li>函数创建阶段：执行上下文创建变量对象，建立作用域链，确定this指向；</li>
-<li>代码执行阶段：完成变量赋值，函数引用，以及执行其他代码。</li>
-</ol>
-<h2 id="变量对象-Variable-Object"><a href="#变量对象-Variable-Object" class="headerlink" title="变量对象(Variable Object)"></a>变量对象(Variable Object)</h2><p>其创建过程：</p>
+<p>本文主旨在于理解setTimeout的使用，弄懂JavaScript的队列执行，搞清常见<strong>面试题</strong>例一的多种解法。</p>
+<h2 id="理解setTimeout的使用"><a href="#理解setTimeout的使用" class="headerlink" title="理解setTimeout的使用"></a>理解setTimeout的使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var timer = setTimeout(<span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    console.log(<span class="string">'一秒钟之后我将被打印出来'</span>)</span><br><span class="line">&#125;, 1000);</span><br><span class="line">clearTimeout(timer); //清除之后，通过timeout定义的操作不会执行</span><br></pre></td></tr></table></figure>
+<ul>
+<li>队列结构，页面所有setTimeout操作都将放在同一个队列执行，<strong>而该队列的执行时间，需要等待到函数调用栈清空才开始执行</strong>。</li>
+<li>理解setTimeout使用<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    console.log(a);</span><br><span class="line">&#125;, 0);</span><br><span class="line">var a = 10;</span><br><span class="line">console.log(b);</span><br><span class="line">console.log(fn);</span><br><span class="line">var b = 20;</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">fn</span></span>() &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">        console.log(<span class="string">'setTImeout 10ms.'</span>);</span><br><span class="line">    &#125;, 10);</span><br><span class="line">&#125;</span><br><span class="line">fn.toString = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> 30;</span><br><span class="line">&#125;</span><br><span class="line">console.log(fn);</span><br><span class="line">setTimeout(<span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    console.log(<span class="string">'setTimeout 20ms.'</span>);</span><br><span class="line">&#125;, 20);</span><br><span class="line">fn();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上例输出结果依次：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">undefined，</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">fn</span></span>() &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">        console.log(<span class="string">'setTImeout 10ms.'</span>);</span><br><span class="line">    &#125;, 10);</span><br><span class="line">&#125;，</span><br><span class="line">30，</span><br><span class="line">10，</span><br><span class="line">setTImeout 10ms.，</span><br><span class="line">setTImeout 20ms.</span><br></pre></td></tr></table></figure></p>
+<h2 id="常见闭包面试题"><a href="#常见闭包面试题" class="headerlink" title="常见闭包面试题"></a>常见闭包面试题</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">例一：</span><br><span class="line"><span class="keyword">for</span>(var i=0;i&lt;=5;i++)&#123;</span><br><span class="line">    setTimeout(<span class="keyword">function</span> <span class="function"><span class="title">timer</span></span>()&#123;</span><br><span class="line">        console.log(i);</span><br><span class="line">    &#125;,i*1000);</span><br><span class="line">&#125;</span><br><span class="line">每隔一秒输出输出6个6</span><br></pre></td></tr></table></figure>
 <blockquote>
-<ol>
-<li>建立arguments对象，检查当前上下文中的参数，建立该对象下的属性和属性值；</li>
-<li>检查当前上下文的函数声明，即用function声明的函数。再变量对象中以函数名建立属性，属性值为指向该函数的所在内存地址引用。如果该属性已存在，告诉该属性将会被新的引用所覆盖；</li>
-<li>检查当前上下文的变量声明，找到变量及以变量名建立属性，属性值为undefined。如果变量名属性存在，防止同名函数被修改为undefined，直接跳过，原属性值不会被修改</li>
-</ol>
+<p>修改例一，使结果每隔1秒输入1，2，3，4，5.</p>
 </blockquote>
-<p>如下例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">test</span></span>() &#123;</span><br><span class="line">    console.log(a);</span><br><span class="line">    console.log(foo());</span><br><span class="line">    var a = 1;</span><br><span class="line">    <span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> 2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">test</span>();</span><br></pre></td></tr></table></figure></p>
-<h3 id="test执行上下文的创建过程："><a href="#test执行上下文的创建过程：" class="headerlink" title="test执行上下文的创建过程："></a>test执行上下文的创建过程：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 创建过程</span><br><span class="line">testEC = &#123;</span><br><span class="line">    // 变量对象</span><br><span class="line">    VO: &#123;</span><br><span class="line">        arguments: &#123;...&#125;,  //注：在浏览器的展示中，函数的参数可能并不是放在arguments对象中</span><br><span class="line">        foo: &lt;foo reference&gt;  // 表示foo的地址引用</span><br><span class="line">        a: undefined</span><br><span class="line">    &#125;,</span><br><span class="line">    scopeChain: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：只有处于函数调用栈栈顶的执行上下文的变量对象，才能变成活动对象。</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 执行阶段</span><br><span class="line">VO -&gt;  AO   // Active Object</span><br><span class="line">AO = &#123;</span><br><span class="line">    arguments: &#123;...&#125;,</span><br><span class="line">    foo: &lt;foo reference&gt;,</span><br><span class="line">    a: 1,</span><br><span class="line">    this: Window</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="全局上下文变量对象"><a href="#全局上下文变量对象" class="headerlink" title="全局上下文变量对象"></a>全局上下文变量对象</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 全局对象为window，全局上下文</span><br><span class="line">windowEC = &#123;</span><br><span class="line">    VO: Window,</span><br><span class="line">    scopeChain: &#123;&#125;,</span><br><span class="line">    this: Window</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>参考文章：<br><a href="https://yangbo5207.github.io/wutongluo/ji-chu-jin-jie-xi-lie/san-3001-bian-liang-dui-xiang.html" target="_blank" rel="noopener">变量对象–这波能反杀</a><br>如有错误，烦请指正，谢谢！</p>
+<ul>
+<li><p>方案一：使用自执行函数提供闭包条件，传入i值并保存在闭包中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (var i=1; i&lt;=5; i++) &#123;</span><br><span class="line">    (<span class="keyword">function</span>(i) &#123;</span><br><span class="line">        setTimeout( <span class="keyword">function</span> <span class="function"><span class="title">timer</span></span>() &#123;</span><br><span class="line">            console.log(i);</span><br><span class="line">        &#125;, i*1000 );</span><br><span class="line">    &#125;)(i)</span><br><span class="line">&#125;  // 1,2,3,4,5</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方案二：在setTimeout第一个参数中利用闭包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (var i=1; i&lt;=5; i++) &#123;</span><br><span class="line">    setTimeout( <span class="keyword">function</span> timer(i) &#123;</span><br><span class="line">       <span class="built_in">return</span> <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">            console.log(i);</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;(i), i*1000 );</span><br><span class="line">&#125;  // 1,2,3,4,5</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方案三：使用let构建块级作用域</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">let</span> i=1;i&lt;=5;i++)&#123;</span><br><span class="line">    setTimeout(<span class="keyword">function</span> <span class="function"><span class="title">timer</span></span>()&#123;</span><br><span class="line">        console.log(i);</span><br><span class="line">    &#125;,i*1000);</span><br><span class="line">&#125;  // 0,1,2,3,4,5</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方案四：利用bind方法</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (var i=1; i&lt;=5; i++) &#123; </span><br><span class="line">    setTimeout( <span class="keyword">function</span> timer(i) &#123;</span><br><span class="line">        console.log(i);</span><br><span class="line">    &#125;.<span class="built_in">bind</span>(null,i), i*1000 );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方案五：利用setTimeout的第三个参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (var i=1; i&lt;=5; i++) &#123; </span><br><span class="line">    setTimeout( <span class="keyword">function</span> timer(i) &#123;</span><br><span class="line">        console.log(i);</span><br><span class="line">    &#125;, i*1000,i );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>参考文章：<br><a href="https://yangbo5207.github.io/wutongluo/ji-chu-jin-jie-xi-lie/fu-jian-1-settimeout-yu-bi-bao.html" target="_blank" rel="noopener">setTimeout与闭包—-这波能反杀</a><br>如有错误，烦请指正，谢谢！</p>
 
       
 
@@ -232,7 +241,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">面试,闭包</a>
         		</li>
       		
 		</ul>
@@ -288,7 +297,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.learning9527.cn/2018/02/26/JavaScript变量对象/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.learning9527.cn/2018/02/27/setTimeout与闭包/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -302,18 +311,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/02/27/JavaScript作用域链与闭包/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          JavaScript作用域链与闭包
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/02/26/JavaScript执行上下文/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JavaScript执行上下文</div>
+    <a href="/2018/02/27/JavaScript作用域链与闭包/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaScript作用域链与闭包</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -343,7 +343,7 @@
   
 
   
-  <div id="SOHUCS" sid="JavaScript变量对象" ></div> 
+  <div id="SOHUCS" sid="setTimeout与闭包" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
