@@ -6,18 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.learning9527.cn">
-  <title>JavaScript面向对象 | 王保华的个人博客</title>
+  <title>JavaScript的this | 王保华的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="JS笔记">
+  <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript面向对象">
-<meta property="og:url" content="http://www.learning9527.cn/2018/02/07/JavaScript面向对象理解/index.html">
+<meta property="og:title" content="JavaScript的this">
+<meta property="og:url" content="http://www.learning9527.cn/2018/02/28/JavaScript的this/index.html">
 <meta property="og:site_name" content="王保华的个人博客">
-<meta property="og:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-625270.jpg">
-<meta property="og:updated_time" content="2018-02-26T06:56:18.611Z">
+<meta property="og:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-607431.jpg">
+<meta property="og:updated_time" content="2018-02-28T06:57:55.450Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript面向对象">
-<meta name="twitter:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-625270.jpg">
+<meta name="twitter:title" content="JavaScript的this">
+<meta name="twitter:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-607431.jpg">
   
     <link rel="alternative" href="/atom.xml" title="王保华的个人博客" type="application/atom+xml">
   
@@ -149,37 +149,80 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-JavaScript面向对象理解" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-JavaScript的this" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      JavaScript面向对象
+      JavaScript的this
     </h1>
   
 
         
-        <a href="/2018/02/07/JavaScript面向对象理解/" class="archive-article-date">
-  	<time datetime="2018-02-07T01:46:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-07</time>
+        <a href="/2018/02/28/JavaScript的this/" class="archive-article-date">
+  	<time datetime="2018-02-28T00:59:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-625270.jpg" alt=""></p>
+        <p><img src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-607431.jpg" alt=""></p>
 <a id="more"></a>
-<p>一个简单的对象：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var person = &#123;</span><br><span class="line">    name: <span class="string">'TOM'</span>,</span><br><span class="line">    age: <span class="string">'20'</span>,</span><br><span class="line">    getName: <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> this.name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>访问person.name或者person[‘name’],处理复杂数据如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">'name'</span>,<span class="string">'person'</span>].foreach(<span class="keyword">function</span>(item)&#123;</span><br><span class="line">    console.log(person[item]);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>JavaScript的工厂模式：<br>    但是无法判断对象实例的类型</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var createPerson = <span class="keyword">function</span>(name, age) &#123;</span><br><span class="line">    var o = new Object();</span><br><span class="line">    o.name = name;</span><br><span class="line">    o.age = age;</span><br><span class="line">    o.getName = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> this.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> o;</span><br><span class="line">&#125;</span><br><span class="line">var perTom = createPerson(<span class="string">'TOM'</span>, 20);</span><br><span class="line">var PerJake = createPerson(<span class="string">'Jake'</span>, 22);</span><br></pre></td></tr></table></figure>
-<p>使用构造函数解决判断对象与实例关系的问题：<br>    var p1=New (person,’tom’,20);  等效于  var p1=new Person(‘tom’,20);<br>每一个函数都有一个prototype属性，该属性指向一个对象，该对象就是原型。<br>    构造函数的prototype以及_proto_属性和实例对象的_proto_属性都指向原型对象，而原型对象的constructor属性指向构造函数<br>    构造函数内部属性和方法–&gt;私有方法<br>    原型对象内部属性和方法–&gt;共有方法<br>    访问实例对象的属性和方法，优先访问实例对象内部的属性和方法。<br>原型链：实例对象A是构造函数B的实例，同时这个构造函数B是构造函数C的实例，构造函数B同时也是实例对象B的<em>proto</em>属性指向原型对象A，而原型的constructor属性指向构造函数C。<br>    <a href="img/_proto_.png">示图如下</a><br>继承：<br>    构造函数的继承：通过call和apply实现继承<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Person(name, age) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.age = age;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.getName = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> this.name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> cPerson(name, age, job) &#123;</span><br><span class="line">    Person.call(this, name, age);</span><br><span class="line">    this.job = job;</span><br><span class="line">&#125; </span><br><span class="line">// 继承原型</span><br><span class="line">cPerson.prototype = new Person(name, age);</span><br><span class="line">// 添加更多方法</span><br><span class="line">cPerson.prototype.getLive = <span class="function"><span class="title">function</span></span>() &#123;&#125;</span><br></pre></td></tr></table></figure></p>
-<p>使用ES5的create函数：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Person(name, age) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.age = age;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.getName = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> this.name</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.getAge = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> this.age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> Student(name, age, grade) &#123;</span><br><span class="line">    // 构造函数继承</span><br><span class="line">    Person.call(this, name, age);</span><br><span class="line">    this.grade = grade;</span><br><span class="line">&#125;</span><br><span class="line">// 原型继承</span><br><span class="line">Student.prototype = Object.create(Person.prototype, &#123;</span><br><span class="line">    // 不要忘了重新指定构造函数</span><br><span class="line">    constructor: &#123;</span><br><span class="line">        value: Student</span><br><span class="line">    &#125;</span><br><span class="line">    getGrade: &#123;</span><br><span class="line">        value: <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">            <span class="built_in">return</span> this.grade</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">var s1 = new Student(<span class="string">'ming'</span>, 22, 5);</span><br><span class="line">console.log(s1.getName());  // ming</span><br><span class="line">console.log(s1.getAge());   // 22</span><br><span class="line">console.log(s1.getGrade()); // 5</span><br></pre></td></tr></table></figure></p>
-<p>如有错误，烦请指正，谢谢！</p>
+<p><strong>切记：this的指向是在函数被调用的时候确定的</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var a = 10;</span><br><span class="line">var obj = &#123;</span><br><span class="line">    a: 20</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">fn</span></span> () &#123;</span><br><span class="line">    console.log(this.a);</span><br><span class="line">&#125;</span><br><span class="line">fn(); // 10</span><br><span class="line">fn.call(obj); // 20</span><br></pre></td></tr></table></figure></p>
+<p><strong>函数执行过程中，一旦this被确定，就不可更改了</strong></p>
+<h2 id="一-全局对象中的this"><a href="#一-全局对象中的this" class="headerlink" title="一.全局对象中的this"></a>一.全局对象中的this</h2><blockquote>
+<ul>
+<li>通过this绑定到全局对象 this.a=20;</li>
+<li>通过声明绑定到变量对象 var a=20；</li>
+<li>只有赋值，隐式绑定全局对象 a=20。</li>
+</ul>
+</blockquote>
+<h2 id="二-函数中的this"><a href="#二-函数中的this" class="headerlink" title="二.函数中的this"></a>二.函数中的this</h2><p>在函数上下文中，this由调用者提供，由调用函数的方式决定；<br>如果调用者函数被某一个对象所拥有，那么该函数调用时，内部的this指向该对象；<br>如果函数独立调用，该函数的内部this，指向undefined，非严格模式下，this指向undefined时，自动指向全局对象。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var a = 20;</span><br><span class="line">var obj = &#123;</span><br><span class="line">    a: 10,</span><br><span class="line">    c: this.a + 20,</span><br><span class="line">    fn: <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">        <span class="built_in">return</span> this.a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(obj.c);    // 40</span><br><span class="line">console.log(obj.fn());  // 10</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'use strict'</span>;</span><br><span class="line">var a = 20;</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">foo</span></span> () &#123;</span><br><span class="line">    var a = 1;</span><br><span class="line">    var obj = &#123;</span><br><span class="line">        a: 10,</span><br><span class="line">        c: this.a + 20,</span><br><span class="line">        fn: <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">            <span class="built_in">return</span> this.a;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> obj.c;</span><br><span class="line">&#125;</span><br><span class="line">console.log(foo());    //  40</span><br><span class="line">console.log(window.foo());  // 40</span><br></pre></td></tr></table></figure>
+<h4 id="对调用者和独立运行的理解"><a href="#对调用者和独立运行的理解" class="headerlink" title="对调用者和独立运行的理解"></a>对调用者和独立运行的理解</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var a = 20;</span><br><span class="line">var foo = &#123;</span><br><span class="line">    a: 10,</span><br><span class="line">    getA: <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">        <span class="built_in">return</span> this.a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(foo.getA()); // 10</span><br><span class="line">var <span class="built_in">test</span> = foo.getA;</span><br><span class="line">console.log(<span class="built_in">test</span>());  // 20</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>foo.getA()中，getA是调用者，他不是独立调用，被foo对象所拥有，this指向foo</li>
+<li>test()作为调用者，尽管引用与foo.getA相同，他是独立调用的，this指向undefined，非严格模式下，指向window</li>
+</ul>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>() &#123;</span><br><span class="line">    console.log(this.a)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> active(fn) &#123;</span><br><span class="line">    fn(); // 真实调用者，为独立调用</span><br><span class="line">&#125;</span><br><span class="line">var a = 20;</span><br><span class="line">var obj = &#123;</span><br><span class="line">    a: 10,</span><br><span class="line">    getA: foo</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">active(obj.getA);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>上例函数独立调用，this指向window</p>
+</blockquote>
+<h2 id="三-使用call-apply显式指定this"><a href="#三-使用call-apply显式指定this" class="headerlink" title="三.使用call,apply显式指定this"></a>三.使用call,apply显式指定this</h2><p>JavaScript中使用call，apply自行设置this的指向，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> fn(num1, num2) &#123;</span><br><span class="line">    console.log(this.a + num1 + num2);</span><br><span class="line">&#125;</span><br><span class="line">var obj = &#123;</span><br><span class="line">    a: 20</span><br><span class="line">&#125;</span><br><span class="line">fn.call(obj, 100, 10); // 130</span><br><span class="line">fn.apply(obj, [20, 10]); // 50</span><br></pre></td></tr></table></figure></p>
+<h3 id="call和apply的应用场景"><a href="#call和apply的应用场景" class="headerlink" title="call和apply的应用场景"></a>call和apply的应用场景</h3><ul>
+<li><p>将类数组对象转化为数组</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> exam(a, b, c, d, e) &#123;</span><br><span class="line">    // 先看看函数的自带属性 arguments 什么是样子的</span><br><span class="line">    console.log(arguments);</span><br><span class="line">    // 使用call/apply将arguments转换为数组, 返回结果为数组，arguments自身不会改变</span><br><span class="line">    var arg = [].slice.call(arguments);</span><br><span class="line">    console.log(arg);</span><br><span class="line">&#125;</span><br><span class="line">exam(2, 8, 9, 10, 3);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>灵活修改this指向</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var foo = &#123;</span><br><span class="line">    name: <span class="string">'joker'</span>,</span><br><span class="line">    showName: <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">      console.log(this.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var bar = &#123;</span><br><span class="line">    name: <span class="string">'rose'</span></span><br><span class="line">&#125;</span><br><span class="line">foo.showName.call(bar);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实现继承</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 定义父级的构造函数</span><br><span class="line">var Person = <span class="keyword">function</span>(name, age) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.age  = age;</span><br><span class="line">    this.gender = [<span class="string">'man'</span>, <span class="string">'woman'</span>];</span><br><span class="line">&#125;</span><br><span class="line">// 定义子类的构造函数</span><br><span class="line">var Student = <span class="keyword">function</span>(name, age, high) &#123;</span><br><span class="line">    // use call</span><br><span class="line">    Person.call(this, name, age);</span><br><span class="line">    this.high = high;</span><br><span class="line">&#125;</span><br><span class="line">Student.prototype.message = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    console.log(<span class="string">'name:'</span>+this.name+<span class="string">', age:'</span>+this.age+<span class="string">', high:'</span>+this.high+<span class="string">', gender:'</span>+this.gender[0]+<span class="string">';'</span>);</span><br><span class="line">&#125;</span><br><span class="line">new Student(<span class="string">'xiaom'</span>, 12, <span class="string">'150cm'</span>).message();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>在Student的构造函数中，借助call方法，将父级的构造函数执行了一次，相当于将Person中的代码，在Sudent中复制了一份，其中的this指向为从Student中new出来的实例对象。call方法保证了this的指向正确，因此就相当于实现了继承。</p>
+</blockquote>
+<ul>
+<li>在向其他上下文传递过程中，确保this指向不变<br>如下例，匿名函数的存在导致this指向的丢失。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">    a: 20,</span><br><span class="line">    getA: <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">            console.log(this.a)</span><br><span class="line">        &#125;, 1000)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.getA();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>解决方案一：使用变量保存this<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">    a: 20,</span><br><span class="line">    getA: <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">        var self=this;</span><br><span class="line">        setTimeout(<span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">            console.log(self.a)</span><br><span class="line">        &#125;, 1000)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.getA();</span><br></pre></td></tr></table></figure></p>
+<p>解决方案二：使用ES5自带bind方法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">    a: 20,</span><br><span class="line">    getA: <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">            console.log(this.a)</span><br><span class="line">        &#125;.<span class="built_in">bind</span>(this), 1000)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.getA();</span><br></pre></td></tr></table></figure></p>
+<p>解决方案三：借助apply和闭包封装一个bind方法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="built_in">bind</span>(fn,obj)&#123;</span><br><span class="line">    <span class="built_in">return</span> <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span> fn.apply(obj,arguments)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var obj = &#123;</span><br><span class="line">    a: 20,</span><br><span class="line">    getA: <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">        setTimeout(<span class="built_in">bind</span>(<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">            console.log(this.a)</span><br><span class="line">        &#125;,this),1000)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.getA();</span><br></pre></td></tr></table></figure></p>
+<h2 id="四-构造函数和原型对象上的this"><a href="#四-构造函数和原型对象上的this" class="headerlink" title="四.构造函数和原型对象上的this"></a>四.构造函数和原型对象上的this</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 构造函数</span><br><span class="line"><span class="keyword">function</span> Person(name, age) &#123;</span><br><span class="line">    this.name = name;   // 这里的this指向了谁?</span><br><span class="line">    this.age = age;   </span><br><span class="line">&#125;</span><br><span class="line">// 原型</span><br><span class="line">Person.prototype.getName = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> this.name; // 这里的this又指向了谁？</span><br><span class="line">&#125;</span><br><span class="line">// 上面的2个this，是同一个吗，他们是否指向了原型对象？</span><br><span class="line">var p1 = new Person(<span class="string">'Nick'</span>, 20);</span><br><span class="line">p1.getName();</span><br></pre></td></tr></table></figure>
+<p><strong>构造函数中，this指向了新创建的对象p1，原型中，this指向调用的对象p1，因此getName的this也指向p1</strong><br>new操作符调用构造函数四个阶段：</p>
+<ul>
+<li>创建一个新的对象</li>
+<li>将构造函数的this指向新对象</li>
+<li>指向构造函数的代码，为这个对象添加属性和方法等</li>
+<li>返回新对象<br>参考文章：<br><a href="https://yangbo5207.github.io/wutongluo/ji-chu-jin-jie-xi-lie/wu-3001-this.html" target="_blank" rel="noopener">this——这波能反杀</a><br>如有错误，烦请指正，谢谢！</li>
+</ul>
 
       
 
@@ -224,7 +267,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JS笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
         		</li>
       		
 		</ul>
@@ -280,7 +323,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.learning9527.cn/2018/02/07/JavaScript面向对象理解/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.learning9527.cn/2018/02/28/JavaScript的this/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -294,18 +337,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/02/11/就要过年/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          今天要回家
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/02/05/腾讯云域名备案/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">腾讯云域名备案</div>
+    <a href="/2018/02/27/setTimeout与闭包/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">setTimeout与闭包</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -335,7 +369,7 @@
   
 
   
-  <div id="SOHUCS" sid="JavaScript面向对象理解" ></div> 
+  <div id="SOHUCS" sid="JavaScript的this" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
