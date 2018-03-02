@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://www.learning9527.cn/2018/02/27/setTimeout与闭包/index.html">
 <meta property="og:site_name" content="王保华的个人博客">
 <meta property="og:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-627032.jpg">
-<meta property="og:updated_time" content="2018-02-27T07:11:32.921Z">
+<meta property="og:updated_time" content="2018-03-02T02:45:49.776Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="setTimeout与闭包">
 <meta name="twitter:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-627032.jpg">
@@ -171,7 +171,7 @@
       
         <p><img src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-627032.jpg" alt=""></p>
 <a id="more"></a>
-<p>本文主旨在于理解setTimeout的使用，弄懂JavaScript的队列执行，搞清常见<strong>面试题</strong>例一的多种解法。</p>
+<p>本文主旨在于理解setTimeout的使用，弄懂JavaScript的队列执行，搞清常见<strong>面试题</strong>例一的多种解法。<br>setTimeout作为一个函数分发器，函数会立即执行，而分发的任务，即第一个参数会延迟执行</p>
 <h2 id="理解setTimeout的使用"><a href="#理解setTimeout的使用" class="headerlink" title="理解setTimeout的使用"></a>理解setTimeout的使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var timer = setTimeout(<span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    console.log(<span class="string">'一秒钟之后我将被打印出来'</span>)</span><br><span class="line">&#125;, 1000);</span><br><span class="line">clearTimeout(timer); //清除之后，通过timeout定义的操作不会执行</span><br></pre></td></tr></table></figure>
 <ul>
 <li>队列结构，页面所有setTimeout操作都将放在同一个队列执行，<strong>而该队列的执行时间，需要等待到函数调用栈清空才开始执行</strong>。</li>
@@ -495,11 +495,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JS笔记</a>
+                <a href="javascript:void(0)" class="js-tag color1">Markdown语法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Markdown语法</a>
+                <a href="javascript:void(0)" class="js-tag color5">JS笔记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -507,11 +507,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">面试,闭包</a>
+                <a href="javascript:void(0)" class="js-tag color2">GitHub</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">GitHub</a>
+                <a href="javascript:void(0)" class="js-tag color1">面试,闭包</a>
               </li>
             
             <div class="clearfix"></div>
@@ -578,7 +578,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">磕磕绊绊&lt;br&gt;稳步前行&lt;br&gt;内容搭建中，相册内容使用litten，在修改</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">What about be a awesome engineer?</div>
   	  	
     	</section>
     

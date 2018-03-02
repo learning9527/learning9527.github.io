@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://www.learning9527.cn/2018/01/22/dealGitHub/index.html">
 <meta property="og:site_name" content="王保华的个人博客">
 <meta property="og:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-620594.jpg">
-<meta property="og:updated_time" content="2018-02-26T06:56:30.116Z">
+<meta property="og:updated_time" content="2018-03-01T08:27:13.022Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="处理GitHub问题">
 <meta name="twitter:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-620594.jpg">
@@ -171,14 +171,8 @@
       
         <p><img src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-620594.jpg" alt=""></p>
 <a id="more"></a>
-<p>GitHub配置域名domain，解决只能显示GitHub.learning9527.io，而不能显示为www.learning9527.cn<br>使用hexo提交GitHub时，hexo clean –&gt; hexo generate –&gt; hexo deploy，发生报错</p>
-<pre><code>error: failed to execute prompt script (exit code 1)
-fatal: could not read Username for &apos;https://github.com&apos;: No error
-FATAL Something&apos;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html
-Error: bash: /dev/tty: No such device or address
-error: failed to execute prompt script (exit code 1)
-fatal: could not read Username for &apos;https://github.com&apos;: No error
-</code></pre><h3 id="两种解决方案如下"><a href="#两种解决方案如下" class="headerlink" title="两种解决方案如下"></a>两种解决方案如下</h3><p>修改配置文件_config.yml中的：<br>Ⅰ.将repository: <a href="http://github.com/learning9527/learning9527.github.io.git" target="_blank" rel="noopener">http://github.com/learning9527/learning9527.github.io.git</a> 改为 repository: git@github.com:learning9527/learning9527.github.io.git<br>Ⅱ.将repository: <a href="http://github.com/learning9527/learning9527.github.io.git" target="_blank" rel="noopener">http://github.com/learning9527/learning9527.github.io.git</a> 改为 repository: ssh://git@github.com/learning9527/learning9527.github.io</p>
+<p>GitHub配置域名domain，解决只能显示GitHub.learning9527.io，而不能显示为www.learning9527.cn<br>使用hexo提交GitHub时，hexo clean –&gt; hexo generate –&gt; hexo deploy，发生报错<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">error: failed to execute prompt script (<span class="built_in">exit</span> code 1)</span><br><span class="line">fatal: could not <span class="built_in">read</span> Username <span class="keyword">for</span> <span class="string">'https://github.com'</span>: No error</span><br><span class="line">FATAL Something<span class="string">'s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span></span><br><span class="line"><span class="string">Error: bash: /dev/tty: No such device or address</span></span><br><span class="line"><span class="string">error: failed to execute prompt script (exit code 1)</span></span><br><span class="line"><span class="string">fatal: could not read Username for '</span>https://github.com<span class="string">': No error</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="两种解决方案如下"><a href="#两种解决方案如下" class="headerlink" title="两种解决方案如下"></a>两种解决方案如下</h3><p>修改配置文件_config.yml中的：<br>Ⅰ.将repository: <a href="http://github.com/learning9527/learning9527.github.io.git" target="_blank" rel="noopener">http://github.com/learning9527/learning9527.github.io.git</a> 改为 repository: git@github.com:learning9527/learning9527.github.io.git<br>Ⅱ.将repository: <a href="http://github.com/learning9527/learning9527.github.io.git" target="_blank" rel="noopener">http://github.com/learning9527/learning9527.github.io.git</a> 改为 repository: ssh://git@github.com/learning9527/learning9527.github.io</p>
 <p>如有错误，烦请指正，谢谢！</p>
 
       
@@ -474,11 +468,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JS笔记</a>
+                <a href="javascript:void(0)" class="js-tag color1">Markdown语法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Markdown语法</a>
+                <a href="javascript:void(0)" class="js-tag color5">JS笔记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -486,11 +480,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">面试,闭包</a>
+                <a href="javascript:void(0)" class="js-tag color2">GitHub</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">GitHub</a>
+                <a href="javascript:void(0)" class="js-tag color1">面试,闭包</a>
               </li>
             
             <div class="clearfix"></div>
@@ -557,7 +551,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">磕磕绊绊&lt;br&gt;稳步前行&lt;br&gt;内容搭建中，相册内容使用litten，在修改</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">What about be a awesome engineer?</div>
   	  	
     	</section>
     
