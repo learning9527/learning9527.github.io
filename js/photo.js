@@ -23,7 +23,7 @@ define([], function () {
             if (begin >= data.length) return;
             var html, li = "";
             for (var i = begin; i < end && i < data.length; i++) {
-                li += '<li><div class="img-box">' + '<a class="img-bg" rel="example_group" href="https://github.com/learning9527/learning9527.github.io/blob/master/photos/' + data[i] + '"></a>' + '<img lazy-src="https://github.com/learning9527/learning9527.github.io/blob/master/photos/' + data[i] + '" />' + '</li>';
+                li += '<li><div class="img-box">' + '<a class="img-bg" rel="example_group" href="https://github.com/learning9527/learning9527.github.io/blob/master/photos/data.json' + data[i] + '"></a>' + '</li>';
             }
             $(".img-box-ul").append(li);
             $(".img-box-ul").lazyload();
