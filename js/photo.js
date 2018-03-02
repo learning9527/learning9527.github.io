@@ -2,31 +2,49 @@ define([], function () {
     return {
         page: 1,
         offset: 20,
+        // init: function () {
+        //     var that = this;
+        //     $.getJSON("/photo/output.json", function (data) {
+        //         that.render(that.page, data);
+
+        //         that.scroll(data);
+        //     });
+        // },
         init: function () {
             var that = this;
-            $.getJSON("/photo/output.json", function (data) {
+            $.getJSON("/photos/data.json", function (data) {
                 that.render(that.page, data);
-
                 that.scroll(data);
             });
         },
-
         render: function (page, data) {
             var begin = (page - 1) * this.offset;
             var end = page * this.offset;
             if (begin >= data.length) return;
             var html, li = "";
             for (var i = begin; i < end && i < data.length; i++) {
-                li += '<li><div class="img-box">' +
-                    '<a class="img-bg" rel="example_group" href="https://github.com/learning9527/Blog-Back-Up/tree/master' + data[i] + '?raw=true"></a>' +
-                    '<img lazy-src="https://github.com/learning9527/Blog-Back-Up/tree/master' + data[i] + '?raw=true" />' +
-                    '</li>';
+                li += '<li><div class="img-box">' + '<a class="img-bg" rel="example_group" href="https://github.com/learning9527/learning9527.github.io/blob/master/photos/' + data[i] + '"></a>' + '<img lazy-src="https://github.com/learning9527/learning9527.github.io/blob/master/photos/' + data[i] + '" />' + '</li>';
             }
-
             $(".img-box-ul").append(li);
             $(".img-box-ul").lazyload();
             $("a[rel=example_group]").fancybox();
         },
+        // render: function (page, data) {
+        //     var begin = (page - 1) * this.offset;
+        //     var end = page * this.offset;
+        //     if (begin >= data.length) return;
+        //     var html, li = "";
+        //     for (var i = begin; i < end && i < data.length; i++) {
+        //         li += '<li><div class="img-box">' +
+        //             '<a class="img-bg" rel="example_group" href="https://github.com/learning9527/Blog-Back-Up/tree/master' + data[i] + '?raw=true"></a>' +
+        //             '<img lazy-src="https://github.com/learning9527/Blog-Back-Up/tree/master' + data[i] + '?raw=true" />' +
+        //             '</li>';
+        //     }
+
+        //     $(".img-box-ul").append(li);
+        //     $(".img-box-ul").lazyload();
+        //     $("a[rel=example_group]").fancybox();
+        // },
 
         scroll: function (data) {
             var that = this;

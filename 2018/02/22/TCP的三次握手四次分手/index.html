@@ -8,13 +8,14 @@
   <link rel="dns-prefetch" href="http://www.learning9527.cn">
   <title>TCP的三次握手四次挥手 | 王保华的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="TCP 三次握手&#x2F;四次挥手">
+  <meta name="keywords" content="TCP,三次握手四次分手">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TCP的三次握手四次挥手">
 <meta property="og:url" content="http://www.learning9527.cn/2018/02/22/TCP的三次握手四次分手/index.html">
 <meta property="og:site_name" content="王保华的个人博客">
 <meta property="og:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-623965.jpg">
-<meta property="og:updated_time" content="2018-02-26T03:27:24.341Z">
+<meta property="og:image" content="http://www.learning9527.cn/2018/02/22/TCP的三次握手四次分手/img/1.jpg">
+<meta property="og:updated_time" content="2018-03-02T08:10:58.145Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TCP的三次握手四次挥手">
 <meta name="twitter:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-623965.jpg">
@@ -171,7 +172,7 @@
       
         <p><img src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-623965.jpg" alt=""></p>
 <a id="more"></a>
-<p>年后第一天上班，心情如上图。</p>
+<p>年后第一天上班，心情如上图。<br><img src="img/1.jpg" alt="1321"></p>
 <h2 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h2><h3 id="第一次握手"><a href="#第一次握手" class="headerlink" title="第一次握手"></a>第一次握手</h3><p>客户端(client)发送一个SYN(J)(synchronize同步)包给服务器(server)，等待服务器的ACK(acknowledgment确认)回复，客户端进入SYN-sent状态。</p>
 <h3 id="第二次握手"><a href="#第二次握手" class="headerlink" title="第二次握手"></a>第二次握手</h3><p>服务器接收客户端发送的synchronize包之后返回一个ACK(J+1)包，以及一个SYN(K)包，等待客户端的回复，服务器进入SYN-RECIVED状态</p>
 <h3 id="第三次握手"><a href="#第三次握手" class="headerlink" title="第三次握手"></a>第三次握手</h3><p>客户端收到服务器发出的ACK(J+1)包后，进入ESTABLISHED状态，根据服务器发来的SYN(K)包，返回等待中的服务器ACK(K+1)包。服务器收到ACK回复之后，设置自己状态为ESTABLISHED.<br>至此，TCP三次握手完成，客户端可以和服务端之间进行通信。即三次握手保证了客户端与服务器之间的彼此间的正常通信。</p>
@@ -230,7 +231,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">TCP 三次握手/四次挥手</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">TCP</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">三次握手四次分手</a>
         		</li>
       		
 		</ul>
@@ -480,15 +485,47 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Markdown语法</a>
+                <a href="javascript:void(0)" class="js-tag color5">作用域链</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JS笔记</a>
+                <a href="javascript:void(0)" class="js-tag color3">闭包</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">TCP 三次握手/四次挥手</a>
+                <a href="javascript:void(0)" class="js-tag color3">函数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">函数式编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">变量对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">内存空间</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">执行上下文</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">this</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">面向对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -496,7 +533,31 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">面试,闭包</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">TCP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">三次握手四次分手</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">域名备案</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
             
             <div class="clearfix"></div>
