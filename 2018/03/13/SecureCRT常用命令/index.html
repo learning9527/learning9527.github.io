@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="http://www.learning9527.cn">
   <title>SecureCRT常用命令 | 王保华的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="SecureCRT命令，服务器">
+  <meta name="keywords" content="SecureCRT命令,Linux,服务器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SecureCRT常用命令">
 <meta property="og:url" content="http://www.learning9527.cn/2018/03/13/SecureCRT常用命令/index.html">
 <meta property="og:site_name" content="王保华的个人博客">
 <meta property="og:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-633874.jpg">
-<meta property="og:updated_time" content="2018-03-13T09:09:16.419Z">
+<meta property="og:updated_time" content="2018-03-14T08:58:01.737Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SecureCRT常用命令">
 <meta name="twitter:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-633874.jpg">
@@ -176,7 +176,7 @@
     <div id="toc-article" class="toc-article">
         <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
       <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-列出文件名"><span class="toc-number">1.</span> <span class="toc-text">一.列出文件名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-改变目录"><span class="toc-number">2.</span> <span class="toc-text">二.改变目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-文件相关"><span class="toc-number">3.</span> <span class="toc-text">三.文件相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-编辑文件时候"><span class="toc-number">4.</span> <span class="toc-text">四.编辑文件时候</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五"><span class="toc-number">5.</span> <span class="toc-text">五.</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-列出文件名"><span class="toc-number">1.</span> <span class="toc-text">一.列出文件名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-改变目录"><span class="toc-number">2.</span> <span class="toc-text">二.改变目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-文件相关"><span class="toc-number">3.</span> <span class="toc-text">三.文件相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-编辑文件时候"><span class="toc-number">4.</span> <span class="toc-text">四.编辑文件时候</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五-vi编辑器"><span class="toc-number">5.</span> <span class="toc-text">五.vi编辑器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六-tail命令语法"><span class="toc-number">6.</span> <span class="toc-text">六.tail命令语法</span></a></li></ol>
           </div>
     <script type="text/javascript">
     function showToc(){
@@ -224,8 +224,21 @@
 <li>:q: 退出当前文件;</li>
 <li>:w: 写入并保存当前文件;</li>
 </ul>
-<h3 id="五"><a href="#五" class="headerlink" title="五."></a>五.</h3><blockquote>
-<p>乱码问题解决：secureCRT中乱码解决：Options-&gt;SessionOptions-&gt;Appearance-&gt;font把default改成UTF-8。</p>
+<h3 id="五-vi编辑器"><a href="#五-vi编辑器" class="headerlink" title="五.vi编辑器"></a>五.vi编辑器</h3><ol>
+<li>命令行模式：控制光标移动，字符/字/行的删除，移动复制某区段及进入insert模式或者last line mode ($ vi 文件名)</li>
+<li>插入模式：该模式下做文字输入，ESC退回命令行模式，输入i，进入插入模式(i)</li>
+<li>底行模式：将文件保存或者推出vi，也可设置编辑环境，如寻找字符串，列出行号<blockquote>
+<p>命令行模式切换到插入模式才可输入 </p>
+</blockquote>
+</li>
+</ol>
+<h3 id="六-tail命令语法"><a href="#六-tail命令语法" class="headerlink" title="六.tail命令语法"></a>六.tail命令语法</h3><ol>
+<li>tail -f 文件名，用于监视file文件增长</li>
+<li>tail -c Number；从Number字节位置读取指定文件</li>
+<li>tail -n Number；从Number行位置读取指定文件</li>
+</ol>
+<blockquote>
+<p>乱码问题解决：secureCRT中乱码解决：Options-&gt;SessionOptions-&gt;Appearance-&gt;font把default改成UTF-8。<br>/home/mfs/logs  连接环境，cd 目录路径 =&gt; 进入日志路径，ls=&gt;显示文件名，tail -f mfs_all.log =&gt; 查询实时日志</p>
 </blockquote>
 
       
@@ -271,7 +284,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SecureCRT命令，服务器</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">SecureCRT命令</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">服务器</a>
         		</li>
       		
 		</ul>
@@ -370,7 +391,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-列出文件名"><span class="toc-number">1.</span> <span class="toc-text">一.列出文件名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-改变目录"><span class="toc-number">2.</span> <span class="toc-text">二.改变目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-文件相关"><span class="toc-number">3.</span> <span class="toc-text">三.文件相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-编辑文件时候"><span class="toc-number">4.</span> <span class="toc-text">四.编辑文件时候</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五"><span class="toc-number">5.</span> <span class="toc-text">五.</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-列出文件名"><span class="toc-number">1.</span> <span class="toc-text">一.列出文件名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-改变目录"><span class="toc-number">2.</span> <span class="toc-text">二.改变目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-文件相关"><span class="toc-number">3.</span> <span class="toc-text">三.文件相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-编辑文件时候"><span class="toc-number">4.</span> <span class="toc-text">四.编辑文件时候</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五-vi编辑器"><span class="toc-number">5.</span> <span class="toc-text">五.vi编辑器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六-tail命令语法"><span class="toc-number">6.</span> <span class="toc-text">六.tail命令语法</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -614,6 +635,18 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">SecureCRT命令</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
               </li>
             
             <div class="clearfix"></div>
