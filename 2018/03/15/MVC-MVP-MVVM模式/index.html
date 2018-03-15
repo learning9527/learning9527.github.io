@@ -6,19 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.learning9527.cn">
-  <title>JavaScript面向对象 | 王保华的个人博客</title>
+  <title>MVC,MVP,MVVM模式 | 王保华的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="JavaScript,面向对象">
+  <meta name="keywords" content="MVC,MVP,MVVM,开发模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript面向对象">
-<meta property="og:url" content="http://www.learning9527.cn/2018/02/07/JavaScript面向对象理解/index.html">
+<meta property="og:title" content="MVC,MVP,MVVM模式">
+<meta property="og:url" content="http://www.learning9527.cn/2018/03/15/MVC-MVP-MVVM模式/index.html">
 <meta property="og:site_name" content="王保华的个人博客">
-<meta property="og:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-625270.jpg">
-<meta property="og:image" content="http://www.learning9527.cn/2018/02/07/JavaScript面向对象理解/img/_proto_.png">
-<meta property="og:updated_time" content="2018-03-05T07:28:33.065Z">
+<meta property="og:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-590314.jpg">
+<meta property="og:updated_time" content="2018-03-15T07:46:01.072Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript面向对象">
-<meta name="twitter:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-625270.jpg">
+<meta name="twitter:title" content="MVC,MVP,MVVM模式">
+<meta name="twitter:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-590314.jpg">
   
     <link rel="alternative" href="/atom.xml" title="王保华的个人博客" type="application/atom+xml">
   
@@ -150,39 +149,77 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-JavaScript面向对象理解" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-MVC-MVP-MVVM模式" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      JavaScript面向对象
+      MVC,MVP,MVVM模式
     </h1>
   
 
         
-        <a href="/2018/02/07/JavaScript面向对象理解/" class="archive-article-date">
-  	<time datetime="2018-02-07T01:46:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-07</time>
+        <a href="/2018/03/15/MVC-MVP-MVVM模式/" class="archive-article-date">
+  	<time datetime="2018-03-15T01:28:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-15</time>
 </a>
         
       </header>
     
     <!-- 目录内容 -->
     
+      <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+            <span class="btn-bg"></span>
+            <span class="btn-text">文章导航</span>
+            </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+      <strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#桌面应用的MVC"><span class="toc-number">1.</span> <span class="toc-text">桌面应用的MVC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-MVC模式"><span class="toc-number">1.1.</span> <span class="toc-text">一.MVC模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-MVP模式"><span class="toc-number">1.2.</span> <span class="toc-text">二.MVP模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-MVVM模式"><span class="toc-number">1.3.</span> <span class="toc-text">三.MVVM模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web应用程序的MVC"><span class="toc-number">2.</span> <span class="toc-text">Web应用程序的MVC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringMVC"><span class="toc-number">2.1.</span> <span class="toc-text">SpringMVC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前后端分离"><span class="toc-number">2.2.</span> <span class="toc-text">前后端分离</span></a></li></ol></li></ol>
+          </div>
+    <script type="text/javascript">
+    function showToc(){
+      var toc_article = document.getElementById("toc-article");
+      var show_toc_btn = document.getElementById("show-toc-btn");
+      toc_article.setAttribute("style","display:block");
+      show_toc_btn.setAttribute("style","display:none");
+      };
+    function showBtn(){
+      var toc_article = document.getElementById("toc-article");
+      var show_toc_btn = document.getElementById("show-toc-btn");
+      toc_article.setAttribute("style","display:none");
+      show_toc_btn.setAttribute("style","display:block");
+      };
+    </script>
+        
     <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-625270.jpg" alt=""></p>
+        <p><img src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-590314.jpg" alt=""></p>
 <a id="more"></a>
-<p>一个简单的对象：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var person = &#123;</span><br><span class="line">    name: <span class="string">'TOM'</span>,</span><br><span class="line">    age: <span class="string">'20'</span>,</span><br><span class="line">    getName: <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> this.name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>访问person.name或者person[‘name’],处理复杂数据如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">'name'</span>,<span class="string">'person'</span>].foreach(<span class="keyword">function</span>(item)&#123;</span><br><span class="line">    console.log(person[item]);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>JavaScript的工厂模式：<br>    但是无法判断对象实例的类型</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var createPerson = <span class="keyword">function</span>(name, age) &#123;</span><br><span class="line">    var o = new Object();</span><br><span class="line">    o.name = name;</span><br><span class="line">    o.age = age;</span><br><span class="line">    o.getName = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> this.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> o;</span><br><span class="line">&#125;</span><br><span class="line">var perTom = createPerson(<span class="string">'TOM'</span>, 20);</span><br><span class="line">var PerJake = createPerson(<span class="string">'Jake'</span>, 22);</span><br></pre></td></tr></table></figure>
-<p>使用构造函数解决判断对象与实例关系的问题：<br>    var p1=New (person,’tom’,20);  等效于  var p1=new Person(‘tom’,20);<br>每一个函数都有一个prototype属性，该属性指向一个对象，该对象就是原型。<br>    构造函数的prototype以及_proto_属性和实例对象的_proto_属性都指向原型对象，而原型对象的constructor属性指向构造函数<br>    构造函数内部属性和方法–&gt;私有方法<br>    原型对象内部属性和方法–&gt;共有方法<br>    访问实例对象的属性和方法，优先访问实例对象内部的属性和方法。<br>原型链：实例对象A是构造函数B的实例，同时这个构造函数B是构造函数C的实例，构造函数B同时也是实例对象B的<em>proto</em>属性指向原型对象A，而原型的constructor属性指向构造函数C。<br>    <img src="./img/_proto_.png" alt=""><br>继承：<br>    构造函数的继承：通过call和apply实现继承<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Person(name, age) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.age = age;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.getName = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> this.name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> cPerson(name, age, job) &#123;</span><br><span class="line">    Person.call(this, name, age);</span><br><span class="line">    this.job = job;</span><br><span class="line">&#125; </span><br><span class="line">// 继承原型</span><br><span class="line">cPerson.prototype = new Person(name, age);</span><br><span class="line">// 添加更多方法</span><br><span class="line">cPerson.prototype.getLive = <span class="function"><span class="title">function</span></span>() &#123;&#125;</span><br></pre></td></tr></table></figure></p>
-<p>使用ES5的create函数：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Person(name, age) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.age = age;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.getName = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> this.name</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.getAge = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> this.age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> Student(name, age, grade) &#123;</span><br><span class="line">    // 构造函数继承</span><br><span class="line">    Person.call(this, name, age);</span><br><span class="line">    this.grade = grade;</span><br><span class="line">&#125;</span><br><span class="line">// 原型继承</span><br><span class="line">Student.prototype = Object.create(Person.prototype, &#123;</span><br><span class="line">    // 不要忘了重新指定构造函数</span><br><span class="line">    constructor: &#123;</span><br><span class="line">        value: Student</span><br><span class="line">    &#125;</span><br><span class="line">    getGrade: &#123;</span><br><span class="line">        value: <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">            <span class="built_in">return</span> this.grade</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">var s1 = new Student(<span class="string">'ming'</span>, 22, 5);</span><br><span class="line">console.log(s1.getName());  // ming</span><br><span class="line">console.log(s1.getAge());   // 22</span><br><span class="line">console.log(s1.getGrade()); // 5</span><br></pre></td></tr></table></figure></p>
+<h2 id="桌面应用的MVC"><a href="#桌面应用的MVC" class="headerlink" title="桌面应用的MVC"></a>桌面应用的MVC</h2><h3 id="一-MVC模式"><a href="#一-MVC模式" class="headerlink" title="一.MVC模式"></a>一.MVC模式</h3><blockquote>
+<p>M表示Model，专门处理业务逻辑<br>V表示View，专注页面布局和数据显示<br>C表示Controller，翻译用户的输入，操作模型和视图</p>
+</blockquote>
+<p>View将页面请求送给Controller，Controller找到Model或者创建Model，然后Model通知View显示结果.<br>MVC模式依赖关系：View依赖Controller和Model，Controller依赖View和Model，Model和View关系微弱，也需要某种方式通知View数据更新<br>耦合度高，低内聚。</p>
+<h3 id="二-MVP模式"><a href="#二-MVP模式" class="headerlink" title="二.MVP模式"></a>二.MVP模式</h3><p>改变Controller，将Model和View完全隔离。</p>
+<blockquote>
+<p>P表示Presenter，在MVP中View只知道Presenter不知道Model</p>
+</blockquote>
+<p>View调用Presenter，Presenter操作Model，Model中进行业务运算，然后Presenter更新View(Presenter调用View的方法，Presenter依赖于View，即Presenter无法做单元测试，等到界面做好之后才可以)。<br>改进：<strong>让View层提取出接口，Presenter只依赖这个接口</strong><br>Presenter不用依赖真正的界面测试，增加了复用性，只要View实现了那个接口，Presenter就可以</p>
+<h3 id="三-MVVM模式"><a href="#三-MVVM模式" class="headerlink" title="三.MVVM模式"></a>三.MVVM模式</h3><p>使用Presenter调用View中的方法设置界面，需要繁琐的代码。<br>告诉View一个数据结构，View根据该数据结构的变化而变化：即<strong>ViewModel</strong>，和View层绑定，ViewModel变化，View更新。</p>
+<blockquote>
+<p>注：实际上微软的WPF和Silverlight，  Android等框架和系统都可以实现View和ViewModel之间的映射和绑定</p>
+</blockquote>
+<h2 id="Web应用程序的MVC"><a href="#Web应用程序的MVC" class="headerlink" title="Web应用程序的MVC"></a>Web应用程序的MVC</h2><h3 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h3><p>与桌面MVC不同，Model没法给View发通知，与MVP不同，Controller不会调用View方法设置界面。</p>
+<blockquote>
+<p>Controller会选择一个View，将模型数据丢过去渲染。原来的View变为View Template(JSP,velocity等)，渲染后变为HTML展示给客户。</p>
+</blockquote>
+<h3 id="前后端分离"><a href="#前后端分离" class="headerlink" title="前后端分离"></a>前后端分离</h3><ul>
+<li>早期B/S应用程序中，访问服务器，HTML整体发给浏览器，即全部刷新，Ajax实现了局部刷新。</li>
+<li>实现在浏览器端使用MVVM,服务器端使用MVC.</li>
+<li>浏览器端：View =&gt; ViewModel =&gt; Model =&gt; &lt;=HTTP=&gt; =&gt; 服务器端(Rod Johnson的SpringMVC)</li>
+</ul>
 <p>如有错误，烦请指正，谢谢！</p>
 
       
@@ -228,11 +265,19 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MVC</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">面向对象</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MVP</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MVVM</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">开发模式</a>
         		</li>
       		
 		</ul>
@@ -288,7 +333,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.learning9527.cn/2018/02/07/JavaScript面向对象理解/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.learning9527.cn/2018/03/15/MVC-MVP-MVVM模式/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -302,18 +347,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/02/22/TCP的三次握手四次分手/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          TCP的三次握手四次挥手
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/02/05/腾讯云域名备案/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">腾讯云域名备案</div>
+    <a href="/2018/03/13/SecureCRT常用命令/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SecureCRT常用命令</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -333,6 +369,19 @@
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#桌面应用的MVC"><span class="toc-number">1.</span> <span class="toc-text">桌面应用的MVC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-MVC模式"><span class="toc-number">1.1.</span> <span class="toc-text">一.MVC模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-MVP模式"><span class="toc-number">1.2.</span> <span class="toc-text">二.MVP模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-MVVM模式"><span class="toc-number">1.3.</span> <span class="toc-text">三.MVVM模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web应用程序的MVC"><span class="toc-number">2.</span> <span class="toc-text">Web应用程序的MVC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringMVC"><span class="toc-number">2.1.</span> <span class="toc-text">SpringMVC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前后端分离"><span class="toc-number">2.2.</span> <span class="toc-text">前后端分离</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
@@ -343,7 +392,7 @@
   
 
   
-  <div id="SOHUCS" sid="JavaScript面向对象理解" ></div> 
+  <div id="SOHUCS" sid="MVC-MVP-MVVM模式" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
