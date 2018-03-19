@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://www.learning9527.cn/2018/03/15/HTTP状态码/index.html">
 <meta property="og:site_name" content="王保华的个人博客">
 <meta property="og:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-580872.jpg">
-<meta property="og:updated_time" content="2018-03-16T08:52:35.593Z">
+<meta property="og:updated_time" content="2018-03-19T08:43:45.391Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTP状态码">
 <meta name="twitter:image" content="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-580872.jpg">
@@ -176,7 +176,7 @@
     <div id="toc-article" class="toc-article">
         <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
       <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#304-协商缓存"><span class="toc-number">1.</span> <span class="toc-text">304 协商缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#101-协议升级"><span class="toc-number">2.</span> <span class="toc-text">101 协议升级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP-HTTPS-HTTP2-0-原型SPDY间区别"><span class="toc-number">3.</span> <span class="toc-text">HTTP/HTTPS/HTTP2.0/原型SPDY间区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#307-hsts安全跳转"><span class="toc-number">4.</span> <span class="toc-text">307 hsts安全跳转</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-HTTP"><span class="toc-number">1.</span> <span class="toc-text">1.HTTP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP-1-0和HTTP1-1支持的方法"><span class="toc-number">1.1.</span> <span class="toc-text">HTTP/1.0和HTTP1.1支持的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用cookie信息状态下的请求"><span class="toc-number">1.2.</span> <span class="toc-text">使用cookie信息状态下的请求</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-常用14个状态码"><span class="toc-number">2.</span> <span class="toc-text">2.常用14个状态码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2XX-成功"><span class="toc-number">2.1.</span> <span class="toc-text">2XX 成功</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3XX-重定向"><span class="toc-number">2.2.</span> <span class="toc-text">3XX 重定向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4XX-客户端错误"><span class="toc-number">2.3.</span> <span class="toc-text">4XX 客户端错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5XX-服务器错误"><span class="toc-number">2.4.</span> <span class="toc-text">5XX 服务器错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP-HTTPS-HTTP2-0-原型SPDY间区别"><span class="toc-number">2.5.</span> <span class="toc-text">HTTP/HTTPS/HTTP2.0/原型SPDY间区别</span></a></li></ol></li></ol>
           </div>
     <script type="text/javascript">
     function showToc(){
@@ -198,30 +198,109 @@
       
         <p><img src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-580872.jpg" alt=""></p>
 <a id="more"></a>
-<p>DNS解析将URL地址解析为IP地址。</p>
-<h3 id="304-协商缓存"><a href="#304-协商缓存" class="headerlink" title="304 协商缓存"></a>304 协商缓存</h3><p>浏览器缓存分为强制缓存和协商缓存，优先访问强制缓存。</p>
-<ol>
-<li>强制缓存：分为expires和cache-control，前者是特定时间，后者是具体的时间长度，后者优先级大于前者；</li>
-<li>协商缓存：分为etag和last-modified，last-modified的设置标准为资源上次修改的时间，etag应对资源修改频繁情况下出现的，基于资源内容计算出来的值，优先级较高。<br>区别：强制缓存不访问服务器，返回结果200，协商缓存需要访问服务器，返回结果304；<h3 id="101-协议升级"><a href="#101-协议升级" class="headerlink" title="101 协议升级"></a>101 协议升级</h3>主要用于websocket和http2的升级。<br>http2：支持单个连接多次请求，二进制，压缩头部，服务器推送。</li>
-</ol>
-<h3 id="HTTP-HTTPS-HTTP2-0-原型SPDY间区别"><a href="#HTTP-HTTPS-HTTP2-0-原型SPDY间区别" class="headerlink" title="HTTP/HTTPS/HTTP2.0/原型SPDY间区别"></a>HTTP/HTTPS/HTTP2.0/原型SPDY间区别</h3><ol>
-<li>HTTP与HTTPS的区别<blockquote>
-<ul>
-<li>HTTPS需要CA申请认证，免费少，要收费</li>
-<li>HTTP协议运行在TCP上，传输内容为明文，HTTPS运行在SSL/TLS上，SSL/TLS运行在TCP上，传输内容经过加密</li>
-<li>HTTP与HTTPS使用完全不同的连接方式，端口不一样，前者为80，后者443</li>
-<li>HTTPS可以有效防止运营商劫持，解决防劫持问题</li>
-</ul>
+<h2 id="1-HTTP"><a href="#1-HTTP" class="headerlink" title="1.HTTP"></a>1.HTTP</h2><h3 id="HTTP-1-0和HTTP1-1支持的方法"><a href="#HTTP-1-0和HTTP1-1支持的方法" class="headerlink" title="HTTP/1.0和HTTP1.1支持的方法"></a>HTTP/1.0和HTTP1.1支持的方法</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th style="text-align:right">说明</th>
+<th style="text-align:center">支持的HTTP协议版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td style="text-align:right">获取资源</td>
+<td style="text-align:center">1.0/1.1</td>
+</tr>
+<tr>
+<td>POST</td>
+<td style="text-align:right">传输实体主体</td>
+<td style="text-align:center">1.0/1.1</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td style="text-align:right">传输文件</td>
+<td style="text-align:center">1.0/1.1</td>
+</tr>
+<tr>
+<td>HEAD</td>
+<td style="text-align:right">获得报文首部</td>
+<td style="text-align:center">1.0/1.1</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td style="text-align:right">删除文件</td>
+<td style="text-align:center">1.0/1.1</td>
+</tr>
+<tr>
+<td>OPTIONS</td>
+<td style="text-align:right">询问支持的方法</td>
+<td style="text-align:center">1.1</td>
+</tr>
+<tr>
+<td>TRACE</td>
+<td style="text-align:right">追踪路径</td>
+<td style="text-align:center">1.1</td>
+</tr>
+<tr>
+<td>CONNECT</td>
+<td style="text-align:right">要求用隧道协议连接代理</td>
+<td style="text-align:center">1.1</td>
+</tr>
+<tr>
+<td>LINK</td>
+<td style="text-align:right">建立和资源之间的联系</td>
+<td style="text-align:center">1.0</td>
+</tr>
+<tr>
+<td>UNLINE</td>
+<td style="text-align:right">断开连接关系</td>
+<td style="text-align:center">1.0</td>
+</tr>
+</tbody>
+</table>
+<p>DNS解析将URL地址域名解析为IP地址。</p>
+<h3 id="使用cookie信息状态下的请求"><a href="#使用cookie信息状态下的请求" class="headerlink" title="使用cookie信息状态下的请求"></a>使用cookie信息状态下的请求</h3><h2 id="2-常用14个状态码"><a href="#2-常用14个状态码" class="headerlink" title="2.常用14个状态码"></a>2.常用14个状态码</h2><ol>
+<li>101 协议升级<br>主要用于Websocket和HTTP2的升级。<br>http2：支持单个连接多次请求，二进制，压缩头部，服务器推送。<br>### <h3 id="2XX-成功"><a href="#2XX-成功" class="headerlink" title="2XX 成功"></a>2XX 成功</h3>表示请求被正常处理了。</li>
+<li>200 OK<br>响应报文中，随状态码返回信息因方法不同而不同。GET请求，资源实体会被返回，HEAD方法中，实体报文不随报文主体作为响应返回。</li>
+<li>204 No Content<br>服务器请求成功，没有资源可以返回。浏览器请求返回204响应，浏览器页面不会更新。</li>
+<li>206 Partial Content<br>客户端进行了范围请求，服务端成功执行了该部分GET请求，响应报文中包含Content-Range指定范围内的实体内容。<h3 id="3XX-重定向"><a href="#3XX-重定向" class="headerlink" title="3XX 重定向"></a>3XX 重定向</h3>说明浏览器要做某些特定的处理以正确处理请求</li>
+<li>301 Moved Permanently<br>永久重定向。请求的资源已被分配新的URI<br><a href="http://www.learning9527.cn/2018/03/15/HTTP状态码">http://www.learning9527.cn/2018/03/15/HTTP状态码</a>  =&gt;  指定资源不加”/“，会产生301状态码</li>
+<li>302 Found<br>临时重定向，该状态码请求资源已经分配了新的URI，用户本次使用新的URI访问。</li>
+<li>303 See Other<br>由于请求对应的资源存在另外一个URI，应使用<strong>GET方法</strong>定向获取请求的资源。<br>当 301、302、303 响应状态码返回时，几乎所有的浏览器都会把POST 改成 GET，并删除请求报文内的主体，之后请求会自动再次发送。301/302的标准是禁止将POST方法改为GET方法的</li>
+<li>304 Not Modified<br>客户端发起附带条件的请求时，服务器允许访问资源但未满足条件的情况。<br>附带条件的请求是指采用GET方法的请求报文中包含 If-Match，If-Modified-Since，If-None-Match，If-Range，If-Unmodified-Since 中任一首部。<br>浏览器缓存分为强制缓存和协商缓存，优先访问强制缓存。</li>
+<li>307 Temporary Redirect<br>临时重定向，遵循浏览器标准，不会从POST改为GET，对于响应，浏览器会做出不同选择。<br>hsts安全跳转，即<strong>(HTTP Strict Transport Security/HTTP严格传输)</strong><br>原本用法是让post请求跳转到新的post请求，也用于hsts跳转。<br>功能是要求浏览器下次访问站点使用https访问，不再先http转https。可以避免SSL攻击，<br>攻击者在http跳转至https的时候介入，使得攻击者使用https协议与服务器交互。<blockquote>
+<p>在服务器响应头中添加 Strict-Transport-Security，可以设置 max-age</p>
 </blockquote>
 </li>
-<li>HTTPS改造<blockquote>
+</ol>
+<blockquote>
+<ul>
+<li>强制缓存：分为expires和cache-control，前者是特定时间，后者是具体的时间长度，后者优先级大于前者</li>
+<li>协商缓存：分为etag和last-modified，last-modified的设置标准为资源上次修改的时间，上次时间之后没有内容更新，304 Not Modified 作为响应返回。etag应对资源修改频繁情况下出现的，基于资源内容计算出来的值，优先级较高。</li>
+</ul>
+</blockquote>
+<p><strong>区别：</strong>强制缓存不访问服务器，返回结果200，协商缓存需要访问服务器，返回结果304。</p>
+<h3 id="4XX-客户端错误"><a href="#4XX-客户端错误" class="headerlink" title="4XX 客户端错误"></a>4XX 客户端错误</h3><ol>
+<li>400 Bad Request<br>表示请求报文中存在语法错误。需要修改请求的内容发生之后重新发送请求。</li>
+<li>401 Unauthorized<br>表示发送的请求需要通过HTTP(BASIC认证/DIGEST认证)认证信息。之前若进行过一次请求，表示用户认证失败。<br>返回含有401的响应必须包含一个适用于被请求资源的WWW-Authenticate首部用以质询（challenge）用户信息。当浏览器初次接收到401响应，会弹出认证用的对话窗口。</li>
+<li>403 Forbidden<br>表示对请求资源的访问被服务器拒绝了。</li>
+<li>404 Not Found<br>服务器上无法找到请求的资源。<h3 id="5XX-服务器错误"><a href="#5XX-服务器错误" class="headerlink" title="5XX 服务器错误"></a>5XX 服务器错误</h3></li>
+<li>500 Internet Server Error<br>服务器端执行请求发生错误，也可能是Web应用存在的bug或某些临时的故障。</li>
+<li>503 Service Unavailable<br>表明服务器处于超负载或者正在停机维护，无法处理请求<h3 id="HTTP-HTTPS-HTTP2-0-原型SPDY间区别"><a href="#HTTP-HTTPS-HTTP2-0-原型SPDY间区别" class="headerlink" title="HTTP/HTTPS/HTTP2.0/原型SPDY间区别"></a>HTTP/HTTPS/HTTP2.0/原型SPDY间区别</h3>HTTP与HTTPS的区别<blockquote>
+<p>HTTPS需要CA申请认证，免费少，要收费<br>HTTP协议运行在TCP上，传输内容为明文，HTTPS运行在SSL/TLS上，SSL/TLS运行在TCP上，传输内容经过加密<br>HTTP与HTTPS使用完全不同的连接方式，端口不一样，前者为80，后者443<br>HTTPS可以有效防止运营商劫持，解决防劫持问题</p>
+</blockquote>
+</li>
+</ol>
+<p>HTTPS改造</p>
+<blockquote>
 <ul>
 <li>HTTPS降低用户访问速度，SSL握手，HTTPS对速度会有一定降低，合理优化部署，影响可以忽略</li>
 <li>使用SPDY，HTTPS素的甚至比HTTP还快</li>
 </ul>
 </blockquote>
-</li>
-<li>SPDY加速网站<blockquote>
+<p>SPDY加速网站</p>
+<blockquote>
 <ul>
 <li>针对HTTP高延迟，采取多路复用方式，通过多个请求stream共享一个tcp连接的方式，解决了HOL blocking问题，降低了延迟同时提高了带宽利用率</li>
 <li>请求优先级，产生新问题，连接共享可能导致关键请求被阻塞，SPDY可以给每个request设置优先级，重要的请求优先得到响应</li>
@@ -230,8 +309,8 @@
 <li>基于HTTPS的加密传输协议，提高了传输数据的可靠性</li>
 </ul>
 </blockquote>
-</li>
-<li>HTTP2.0<blockquote>
+<p>HTTP2.0</p>
+<blockquote>
 <ul>
 <li>SPDY的升级版，支持明文HTTP传输，而SPDY强制使用HTTPS</li>
 <li>消息头压缩算法使用HPACK，非SPDY的DEFLATE</li>
@@ -241,12 +320,7 @@
 <li>新特性，服务端推送，和SPDY一样具有server push</li>
 </ul>
 </blockquote>
-</li>
-</ol>
-<h3 id="307-hsts安全跳转"><a href="#307-hsts安全跳转" class="headerlink" title="307 hsts安全跳转"></a>307 hsts安全跳转</h3><p>即<strong>(HTTP Strict Transport SecurityHTTP严格传输)</strong><br>原本用法是让post请求跳转到新的post请求，也用于hsts跳转。<br>功能是要求浏览器下次访问站点使用https访问，不再先http转https。可以避免SSL攻击，<br>攻击者在http跳转至https的时候介入，使得攻击者使用https协议与服务器交互。</p>
-<blockquote>
-<p>在服务器响应头中添加 Strict-Transport-Security，可以设置 max-age</p>
-</blockquote>
+<p>参考：书籍《图解HTTP》</p>
 
       
 
@@ -411,7 +485,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#304-协商缓存"><span class="toc-number">1.</span> <span class="toc-text">304 协商缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#101-协议升级"><span class="toc-number">2.</span> <span class="toc-text">101 协议升级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP-HTTPS-HTTP2-0-原型SPDY间区别"><span class="toc-number">3.</span> <span class="toc-text">HTTP/HTTPS/HTTP2.0/原型SPDY间区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#307-hsts安全跳转"><span class="toc-number">4.</span> <span class="toc-text">307 hsts安全跳转</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-HTTP"><span class="toc-number">1.</span> <span class="toc-text">1.HTTP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP-1-0和HTTP1-1支持的方法"><span class="toc-number">1.1.</span> <span class="toc-text">HTTP/1.0和HTTP1.1支持的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用cookie信息状态下的请求"><span class="toc-number">1.2.</span> <span class="toc-text">使用cookie信息状态下的请求</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-常用14个状态码"><span class="toc-number">2.</span> <span class="toc-text">2.常用14个状态码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2XX-成功"><span class="toc-number">2.1.</span> <span class="toc-text">2XX 成功</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3XX-重定向"><span class="toc-number">2.2.</span> <span class="toc-text">3XX 重定向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4XX-客户端错误"><span class="toc-number">2.3.</span> <span class="toc-text">4XX 客户端错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5XX-服务器错误"><span class="toc-number">2.4.</span> <span class="toc-text">5XX 服务器错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP-HTTPS-HTTP2-0-原型SPDY间区别"><span class="toc-number">2.5.</span> <span class="toc-text">HTTP/HTTPS/HTTP2.0/原型SPDY间区别</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -695,6 +769,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">域名备案</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IP</a>
               </li>
             
             <div class="clearfix"></div>
